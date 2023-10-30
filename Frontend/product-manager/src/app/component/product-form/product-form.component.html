@@ -1,0 +1,14 @@
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label>Description: <input formControlName="description"></label><br>
+  <label>Can Expire: <input type="checkbox" formControlName="canExpire"></label><br>
+  <div *ngIf="productForm.get('canExpire')?.value">
+    <label>Expiry Date: <input type="date" formControlName="expiryDate"></label><br>
+  </div>
+  <label>Category: <input formControlName="category"></label><br>
+  <label>Price: <input type="number" formControlName="price"></label><br>
+  <label>On Special: <input type="checkbox" formControlName="isSpecial"></label><br>
+  
+<button type="submit" [disabled]="!productForm.valid">Save Product</button>
+  <button type="button" (click)="clearForm()">Clear Form</button> 
+</form>

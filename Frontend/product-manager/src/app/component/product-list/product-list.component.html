@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+<h1>Product List</h1>
+<div>
+  <label for="categoryFilter">Filter by Category:</label>
+  <select id="categoryFilter" (change)="filterByCategory($event)">
+    <option value="All">All</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+</div>
+
+<div *ngFor="let product of products; let i = index" [class.special]="isSpecial(product)">
+  <div>Description: {{ product.description }}</div>
+  <div>Can Expire: {{ product.canExpire }}</div>
+  <div *ngIf="product.canExpire">Expiry Date: {{ product.expiryDate | date }}</div>
+  <div>Category: {{ product.category }}</div>
+  <div>Price: {{ product.price }}</div>
+  <div *ngIf="product.isSpecial">On Special</div>
+  <button (click)="deleteProduct(i)">Delete</button>
+  <hr>
+</div>
